@@ -14,7 +14,7 @@ def test_login_from_json():
 
     # Access the web page and fill standard user information
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=False)
+        browser = playwright.chromium.launch(headless=False, slow_mo=500)
         page = browser.new_page()
         page.goto(url)
         page.get_by_placeholder("Username").fill(username)
@@ -22,7 +22,7 @@ def test_login_from_json():
         page.get_by_role('button',name='Login').click()
 
         # Verify the result after loading
-        expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
+        expect(page).to_have_url(f"{url}/inventory.html")
         expect(page).to_have_title("Swag Labs")
 
         browser.close()
