@@ -1,7 +1,7 @@
-from playwright.sync_api import expect
+from playwright.sync_api import expect, Page
 
 # Add one item to cart and verify cart count
-def test_cart_update(logged_in_page):
+def test_cart_update(logged_in_page: Page):
     page = logged_in_page
 
     # Count initial cart number
